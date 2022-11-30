@@ -1,0 +1,74 @@
+html {
+    font-size: 16px;
+    @include media-max($M){
+      font-size: 14.5px ;
+    }
+  }
+  body {
+    margin: 0;
+    font-family: IRANSans_light, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-overflow-scrolling: touch;
+    background-color: $BackgroundPublic;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+  }
+  
+  input {
+    outline: 0;
+    box-shadow: 0 0 0;
+    border: 0;
+  
+    &:focus {
+      outline: 0;
+      box-shadow: 0 0 0;
+    }
+  }
+  
+  button {
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    box-shadow: 0 0 0;
+    text-decoration: none;
+    cursor: pointer;
+  
+    &:focus {
+      outline: 0;
+      box-shadow: 0 0 0;
+      text-decoration: none;
+    }
+  }
+  
+  a {
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    box-shadow: 0 0 0;
+    text-decoration: none;
+  
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  
+  label {
+    margin: 0;
+  }
+  
+  p {
+    margin: 0;
+  }
+  
+  textarea {
+    &:focus {
+      outline: 0;
+    }
+  }
+  

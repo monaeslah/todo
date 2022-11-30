@@ -1,15 +1,17 @@
-import React, { useHook , useState, Fragment}   from 'react';
+import React from "react";
 
+import CounterNav from "./counterCountroller";
+import CounterVal from "./counterVal"
 
-export default function Counting (){
-const [count ,setCount]=useState(0)
-return(
-    <Fragment>
-        <div>
-            Counting by useHook{count}
-            <button onClick={()=>setCount(count+1)}> Click  </button>
-        </div>
-    </Fragment>
-)
+const Counter = () => {
+  // console.log("Counter...", props);
+  return (
+    <section className="counter">
+      <h1>Counter</h1>
+     <CounterNav />
+     <CounterVal/>
+    </section>
+  );
+};
 
-}
+export default Counter;

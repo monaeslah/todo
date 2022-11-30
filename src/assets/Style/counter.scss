@@ -1,0 +1,17 @@
+#counter-nav{
+    button{
+        margin: 2px;
+        padding: 5px;
+        border-radius: 3px;
+        color: $colorBlack;
+        background-color: $ColorMainDark2;
+    }
+}
+.counter-value{
+    width:100px;
+    margin: 2px;
+    border-radius: 3px;
+   text-align:center;
+    color: $BackgroundPublic;
+    background-color: $greenColor;
+}
