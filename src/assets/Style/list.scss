@@ -1,4 +1,7 @@
-#list-inp{
+#due{
+margin:auto;
+  
+    .list-inp{
     button{
         margin: 2px;
         padding: 5px;
@@ -6,4 +9,21 @@
         color: $colorBlack;
         background-color: $ColorMainDark2;
     }
+}
+.items_row{
+    margin:5px 8px;
+    display: flex;
+    flex-direction:row ;
+
+}
+.edit_btn{
+    color: $colorGray;;
+background-color: $ColorMainDark3;
+border-radius: $border-radius-3;
+}
+.delt_btn{
+    color: white;
+    border-radius: $border-radius-3;
+    background-color:$redColor
+}
 }

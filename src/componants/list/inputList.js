@@ -1,17 +1,36 @@
-import React , {useState} from "react";
-
+import React, { useState } from "react";
+import {v1 as uuid} from 'uuid';
 import { useDispatch, useSelector } from "react-redux";
-import { addCount, decrease, reset } from "../../redux/pages/action";
+import { addTodo} from "../../redux/pages/action";
 
 export const InputTodo = () => {
-const [value, setValue] = useState("");
-const dispatch = useDispatch();
-  return (
-    <div id="list-inp">
-         <input value={value} onChange={e => setValue(e.target.value)}  />;
-      <button onClick={() => dispatch()}>Add</button>
+  const [title, setTitle] = useState("");
+  const dispatch = useDispatch();
+
+  const handleTodo = (e) => {
+    setTitle(e.target.value);
+  };
+  const addList = () => {
+   
     
-     </div>
+  };
+  return (
+    <div className="list-inp">
+      <input value={title} onChange={handleTodo} />
+
+      <input
+        type="submit"
+        value="Submit"
+        onClick={() => {dispatch( addTodo(
+          {
+            
+            title:title
+          }
+        ));
+        setTitle('')
+      }}
+      ></input>
+    </div>
   );
 };
 
