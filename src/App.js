@@ -4,8 +4,8 @@ import Todo from './componants/list/index'
 
 function App() {
   return (
-    <div>
-   <Count/>
+    <div className='App'>
+   {/* <Count/> */}
    <Todo/>
     </div>
   );

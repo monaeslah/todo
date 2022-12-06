@@ -6,11 +6,17 @@ import ShowList from "./showList";
 const ToDo = () => {
  
   return (
-    <section id="due">
-      <h1>ToDo</h1>
+    <>
+
+    <div className="app-bg">
+        <img src={require("../../assets/img/bg-desktop-light.jpg")} alt="" />
+      
+    </div>
+    <div className="app-body">
       <ListInput />
       <ShowList />
-    </section>
+    </div>
+    </>
   );
 };
 

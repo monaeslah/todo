@@ -1,29 +1,253 @@
-#due{
-margin:auto;
-  
-    .list-inp{
-    button{
-        margin: 2px;
-        padding: 5px;
-        border-radius: 3px;
-        color: $colorBlack;
-        background-color: $ColorMainDark2;
-    }
+.App{
+	display: grid;
+    grid-template-rows: 1fr 3fr;
+    min-height: 100vh;
+    background-color: $SecBackgroundPublic;
+    position: relative;
+    transition: background-color 0.5s ease-in-out;
 }
-.items_row{
-    margin:5px 8px;
-    display: flex;
-    flex-direction:row ;
+.app-bg {
+  height: 100%;
+  overflow: hidden;
 
+  img {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
 }
-.edit_btn{
-    color: $colorGray;;
-background-color: $ColorMainDark3;
-border-radius: $border-radius-3;
+
+.app-body {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translate(-50%);
+  width: 60%;
+
+  div:first-child {
+    margin-bottom: 2em;
+  }
+
+  h1 {
+	margin:0;
+    font-size: 3rem;
+    letter-spacing: 0.3em;
+    color: #fff;
+  }
+
+  img {
+    cursor: pointer;
+    object-fit: cover;
+  }
+  .submiting{
+	padding: 0.5em;
+	border-radius: $border-radius-3;
+	color: $BackgroundPublic;
+	background-color: $greenColor;
+  }
+  .todo-input {
+    position: relative;
+    margin-bottom: 2em;
+    border-radius: 0.6em;
+    box-shadow: 0 3px 20px 10px rgba(0, 0, 0, 0.45);
+   input {
+    padding: 1em 4em 1em 3em;
+    width: 100%;
+    border-radius: 0.5em;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    background-color: $BackgroundPublic;
+    color: $primeryblack;
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+  }
+  &::placeholder {
+    font-weight: 700;
+    font-size: 1rem;
+    color: $primeryblack;
+    transition: color 0.5s ease-in-out;
+  }
+  .checkbox{
+	width: auto                                                                                                                                                                                                              ;
+	position: absolute;
+    left: 1em;
+    top: 50%;
+    transform: translateY(-50%);
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid $primeryblack;
+    padding: 0.5em;
+    border-radius: 50%;
+    font-size: 1.1rem;
+	&:checked{
+		background: linear-gradient(135deg, var(--primary-check-background))
+		center/cover no-repeat;
+		&::after{
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-image: url("../img/icon-check.svg");
+			width: 50%;
+			height: 50%;
+		}
+	}
+  }
+  .error {
+    border: 1px solid red;
+  }
+ img {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    object-fit: cover;
+    padding: 1em;
+    transition: background-color 0.3s ease-in-out;
+	&:hover{
+		background-color: limegreen;
+	}
+  }
 }
-.delt_btn{
-    color: white;
-    border-radius: $border-radius-3;
-    background-color:$redColor
+  p {
+    color: var(--font-secondary);
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 3em;
+  }
 }
+.todo-list {
+  box-shadow: 0 3px 20px 5px rgba(0, 0, 0, 0.1);
+ ul li {
+  width: 100%;
+  list-style: none;
+  background-color: var(--bg-primary);
+  padding: 1em;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: $primeryblack;
+  border-bottom: 1px solid var(--font-secondary);
+  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+  .over {
+	  opacity: 0.6;
+	}
+	.completed {
+		background-color: var(--bg-secondary);
+		text-decoration: line-through;
+	}
+	:first-of-type {
+		border-radius: 0.5em 0.5em 0 0;
+	}
+	
+	
+	input {
+		margin-right: 2em;
+		cursor: pointer;
+	}
+	
+	img {
+		margin-left: auto;
+	}
+	
+	p {
+		cursor: pointer;
+	}
+}
+
+ input &:checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid $primeryblack;
+  padding: 0.8em;
+  border-radius: 50%;
+  position: relative;
+  
+  &:checked {
+	  background: linear-gradient(135deg, var(--primary-check-background))
+	  center/cover no-repeat;
+	  
+	  ::after {
+		  content: "";
+		  position: absolute;
+		  top: 50%;
+		  left: 50%;
+		  transform: translate(-50%, -50%);
+		  background: url("../img/icon-check.svg") no-repeat center/cover;
+		  width: 50%;
+		  height: 50%;
+		  pointer-events: none;
+		}
+		}
+}
+}
+.empty {
+  background-color: var(--bg-primary);
+  border-radius: 0.5em 0.5em 0 0;
+  text-align: center;
+  padding: 1em 0;
+  transition: background-color 0.5s ease-in-out;
+  
+  h2 {
+	  color: $primeryblack;
+	  font-size: 2rem;
+	  font-weight: 700;
+	  transition: color 0.5s ease-in-out;
+	}
+}
+
+.filter {
+  padding: 1em;
+  background-color: var(--bg-primary);
+  border-radius: 0 0 0.5em 0.5em;
+  font-size: 1rem;
+  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+  margin-bottom: 3em;
+  p {
+	color: var(--font-secondary);
+  }
+  div button {
+   font-weight: 700;
+   margin-right: 1em;
+   color: var(--font-secondary);
+   background-color: transparent;
+   border: none;
+   font-size: 1rem;
+   cursor: pointer;
+  } &:last-child{
+	margin-right: unset;
+  }
+  .active {
+	color: var(--primary-bright-blue);
+  }
+}
+
+
+
+
+
+
+
+.filter > button {
+  font-weight: 500;
+  color: var(--font-secondary);
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+
+.edit_btn {
+  margin-left: auto;
+  color: $colorGray;
+  background-color: $ColorMainDark3;
+  border-radius: $border-radius-3;
+}
+.delt_btn {
+  color: white;
+  border-radius: $border-radius-3;
+  background-color: $redColor;
 }

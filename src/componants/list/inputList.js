@@ -1,36 +1,52 @@
 import React, { useState } from "react";
-import {v1 as uuid} from 'uuid';
+import { v1 as uuid } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
-import { addTodo} from "../../redux/pages/action";
+import moon from "../../assets/img/icon-moon.svg"
+import sun from "../../assets/img/icon-sun.svg"
+import { createTask} from "../../redux/pages/action";
 
 export const InputTodo = () => {
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState([]);
+  const [darkMode,changeMode]=useState(true)
+
   const dispatch = useDispatch();
 
-  const handleTodo = (e) => {
+  const Title = (e) => {
     setTitle(e.target.value);
   };
-  const addList = () => {
-   
-    
-  };
-  return (
-    <div className="list-inp">
-      <input value={title} onChange={handleTodo} />
 
-      <input
-        type="submit"
-        value="Submit"
-        onClick={() => {dispatch( addTodo(
-          {
-            
-            title:title
-          }
-        ));
-        setTitle('')
-      }}
-      ></input>
-    </div>
+  const Submit=()=>{
+  dispatch(createTask(title))
+ 
+    
+  }
+  return (
+    <>
+    
+    <div className="flex align-center space-between ">
+      <h1>TODO</h1>
+      	{!darkMode ? (
+        	<img
+						src={moon}
+						alt=""
+						onClick={() => changeMode(true)}
+					/>
+          ) : (
+            <img
+            src={sun}
+            alt=""
+            onClick={() => changeMode(false)}
+            />
+            )} 
+            </div>
+      <div className="todo-input ">
+        <input value={title} onChange={Title} placeholder="title" />
+        <input type="checkbox" className="checkbox" disabled />
+      </div>
+      
+      <input type="button" value="Submit" className="submiting" onClick={Submit}></input>
+   
+    </>
   );
 };
 

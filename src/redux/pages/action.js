@@ -13,16 +13,31 @@ export const reset = (payload) => ({
 });
 
 ///tasks
-export const addTodo = (todo) => ({
+
+let _id = 1;
+export function uniqueId() {
+  return Math.random()*1000;
+}
+
+export const createTask = (title) => ({
   type: ADD,
-  payload: todo,
-});
-export const updateTodo = (todo) => ({
-  type: UPDATE,
-  payload: todo,
+  payload: { id: uniqueId(),title}
 });
 
-export const deletTodo = (todoId) => ({
-  type: DELETE,
-  payload: todoId,
+
+
+
+
+
+export const updateTodo = ({title}) => ({
+  type: UPDATE,
+  payload: title
 });
+
+export const deletTodo = (id) => {
+  console.log("delet",id)
+  
+  return ({
+  type: DELETE,
+   id,
+})}
