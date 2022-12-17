@@ -14,7 +14,7 @@ export const reset = (payload) => ({
 
 ///tasks
 
-let _id = 1;
+
 export function uniqueId() {
   return Math.random()*1000;
 }
@@ -34,10 +34,8 @@ export const updateTodo = ({title}) => ({
   payload: title
 });
 
-export const deletTodo = (id) => {
-  console.log("delet",id)
-  
-  return ({
+export const deletTodo = (id) =>( {
+ 
   type: DELETE,
    id,
-})}
+})

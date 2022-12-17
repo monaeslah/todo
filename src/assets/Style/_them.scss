@@ -1,0 +1,79 @@
+
+
+$themes: (
+        default: (
+            primaryBrightBlue:$primaryBrightBlue,
+            primaryCheckBackground: $primaryCheckBackground,
+            /* ### Light Theme */
+            fontPrimary    : $fontPrimary,
+            fontSecondary : $fontSecondary,
+            bgPrimary   : $bgPrimary,
+            bgSecondary     : $bgSecondary,
+            bgComplete   : $bgComplete,
+        ),
+        dark: (
+            fontPrimary : $fontSprimary,
+            fontSecondary   : $fontSsecondary,
+            bgPrimary  : $bgSprimary,
+            bgSecondary   : $bgSsecondary,
+            bgComplete  : $bgScomplete,
+           
+        ),
+);
+
+
+// $themes: (
+//         default: (
+//                 logo: url("../images/brand/logo_vertical.svg"),
+//                 bg: $primaryBrightBlue,
+//                 card-bg: $primaryCheckBackground,
+//                 text: $fontPrimary,
+//                 text-secondary:$fontSecondary,
+//                 link:$bgPrimary,
+//                 hover: $LightGrayishBlue,
+//                 border: $bgSecondary
+//         ),
+//         dark: (
+//                 logo: url("../images/brand/logo_vertical--invert.svg"),
+//                 bg:  $VeryDarkDesaturatedBlue,
+//                 card-bg:  $LightGrayishBlue,
+//                 text: $bgSprimary,
+//                 text-secondary:$bgSsecondary,
+//                 link: $VeryDarkGrayishBlue,
+//                 hover: $VeryDarkGrayishBlue,
+//                 border: $bgSecondary
+//         ),
+// );
+
+
+
+
+
+@mixin themed() {
+    @each $theme, $map in $themes {
+      .theme--#{$theme} & {
+        $theme-map: () !global;
+        @each $key, $submap in $map {
+          $value: map-get(map-get($themes, $theme), '#{$key}');
+          $theme-map: map-merge($theme-map, ($key: $value)) !global;
+        }
+        @content;
+        $theme-map: null !global;
+      }
+    }
+  }
+  
+  @function t($key) {
+    @return map-get($theme-map, $key);
+  }
+//  .app-body {
+//     @include themed() {
+//       color: t('primaryBrightBlue');
+//       background: t('bgComplete');
+//     }
+  
+ 
+//   }
+  
+ 
+  

@@ -3,9 +3,11 @@
 	display: grid;
     grid-template-rows: 1fr 3fr;
     min-height: 100vh;
-    background-color: $bgPrimary;
     position: relative;
     transition: background-color 0.5s ease-in-out;
+    @include themed() {
+      background-color: t('bgPrimary');
+      }
 }
 .app-bg {
   height: 100%;
@@ -43,9 +45,11 @@
   }
   .submiting{
 	padding: 0.5em;
-	border-radius: $border-radius-3;
-	color: $BackgroundPublic;
-	background-color: $greenColor;
+  border-radius: $border-radius-3;
+  @include themed() {
+    background-color: t('greenColor');
+	color: t(BackgroundPublic);
+    }
   }
 
   .todo-input {
@@ -60,15 +64,20 @@
     border: none;
     font-size: 1.1rem;
     font-weight: 500;
-    background-color: $BackgroundPublic;
-    color: $fontPrimary;
     transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+    @include themed() {
+      background-color: t('BackgroundPublic');
+    color: t('fontPrimary');
+      }
   }
   &::placeholder {
     font-weight: 700;
     font-size: 1rem;
-    color: $fontPrimary;
     transition: color 0.5s ease-in-out;
+    @include themed() {
+      
+    color: t('fontPrimary');
+      }
   }
   .checkbox{
 	  width: auto                                                                                                                                                                                                              ;
@@ -77,14 +86,21 @@
     top: 50%;
     transform: translateY(-50%);
     appearance: none;
-    -webkit-appearance: none;
-    border: 1px solid $fontPrimary;
+    -webkit-appearance: none;;
     padding: 0.5em;
     border-radius: 50%;
     font-size: 1.1rem;
+    @include themed() {
+      
+      border: 1px solid t('fontPrimary');
+        }
 	&:checked{
-		background: linear-gradient(135deg, $primaryCheckBackground)
-		center/cover no-repeat;
+	
+    @include themed() {
+      background: linear-gradient(135deg, t('primaryCheckBackground'))
+     center/cover no-repeat;
+     
+        }
 		&::after{
 			content: "";
 			position: absolute;
@@ -115,10 +131,13 @@
   }
 }
   p {
-    color: $fontSecondary;
+   
     font-size: 1rem;
     text-align: center;
     margin-bottom: 3em;
+    @include themed() {
+     color: t('fontSecondary');
+        }
   }
 }
 .todo-list {
@@ -129,19 +148,27 @@
  ul {
   li {
   list-style: none;
-  background-color: $bgPrimary;
   padding: 1em;
   font-size: 1.1rem;
   font-weight: 500;
-  color: $fontPrimary;
-  border-bottom: 1px solid $fontSecondary;
   transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+   @include themed() {
+     color: t('fontPrimary');
+     background-color: t('bgPrimary');
+     border-bottom: 1px solid t('fontSecondary');
+        }
+  
   .over {
 	  opacity: 0.6;
 	}
 	.completed {
-		background-color:$bgSecondary;
+		
 		text-decoration: line-through;
+    @include themed() {
+      
+      background-color: t('bgSecondary');
+    
+         }
 	}
 	&:first-of-type {
 		border-radius: 0.5em 0.5em 0 0;
@@ -165,15 +192,23 @@
  input {
   appearance: none;
   -webkit-appearance: none;
-  border: 1px solid $fontPrimary;
   padding: 0.8em;
   border-radius: 50%;
   position: relative;
+  @include themed() {
+      
+    
+  border: 1px solid t('fontPrimary');
   
+       }
   &:checked {
-	  background: linear-gradient(135deg,$primaryCheckBackground)
-	  center/cover no-repeat;
 	  
+    @include themed() {
+      
+      background: linear-gradient(135deg,t('primaryCheckBackground'))
+      center/cover no-repeat;
+      
+           }
 	 &:after {
 		  content: "";
 		  position: absolute;
@@ -189,44 +224,62 @@
 }
 }
 .empty {
-  background-color:$bgPrimary;
+
   border-radius: 0.5em 0.5em 0 0;
   text-align: center;
   padding: 1em 0;
   transition: background-color 0.5s ease-in-out;
-  
+  @include themed() {
+    background-color:t('bgPrimary');
+         }
   h2 {
-	  color: $fontPrimary;
+	  
 	  font-size: 2rem;
 	  font-weight: 700;
 	  transition: color 0.5s ease-in-out;
+    @include themed() {
+      background-color:t('fontPrimary');
+           }
 	}
 }
 
 .filter {
   padding: 1em;
-  background-color: $bgPrimary;
   border-radius: 0 0 0.5em 0.5em;
   font-size: 1rem;
   transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
   margin-bottom: 3em;
+  @include themed() {
+    background-color:t('bgPrimary');
+         }
   p {
-	color: $fontSecondary;
+	
+  @include themed() {
+   color:t('fontSecondary');
+         }
   }
   div button {
    font-weight: 700;
    margin-right: 1em;
-   color: $fontSecondary;
    background-color: transparent;
    border: none;
    font-size: 1rem;
    cursor: pointer;
+   @include themed() {
+    color:t('fontSecondary');
+          }
   } &:last-child{
 	margin-right: unset;
   }
   .active {
-	color:$primaryBrightBlue;
+  
+    @include themed() {
+     
+      color: t('primaryBrightBlue');
+     
+    }
   }
+ 
 }
 
 
@@ -237,17 +290,28 @@
 
 .filter > button {
   font-weight: 500;
-  color: $fontSecondary;
   background-color: transparent;
   border: none;
   font-size: 1rem;
   cursor: pointer;
+  @include themed() {
+     
+    color: t('fontSecondary');
+   
+  }
 }
 
 
-
-.delt_btn {
-  padding: 0px 20px;
-  color: white;
-  background-color: $redColor;
+.theme--dark {
+  .app-bg {
+    display: block;
+    object-fit: cover;
+    width: 10%;
+    height: 10%;
+  }
+}
+.theme--light {
+  .App {
+      background: #ebebeb;
+  }
 }

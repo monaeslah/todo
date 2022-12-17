@@ -9,12 +9,10 @@ $colorGray: #85898d;
 $goldColor: #E3CA92;
 $redColor: #b1111b;
 $BackgroundPublic:#f7f7f7;
-$SecBackgroundPublic:#e4e5f1;
 $colorWhite: #fff;
 $MainColor: #841474;
 $MainColorLight: #d020b7;
 $colorOrange: #ff9013;
-$primeryblack:#484b6a;
 $Gray: #c4c5c547;
 $GrayReal: #c4c5c5;
 $colorPink: #ff808b;
@@ -23,6 +21,31 @@ $ColorMainDark2: #fe9901;
 $ColorMainDark3:#fed801;
 $colorBlack: #3a3a3a;
 $silver:#b3b7c1;
+
+//root
+
+$primaryBrightBlue:#3a7bfd;
+$primaryCheckBackground: #57ddff, #c058f3;
+/* ### Light Theme */
+$fontPrimary: #484b6a;
+$fontSecondary: #9394a5;
+$bgPrimary: #fafafa;
+$bgSecondary: #e4e5f1;
+$bgComplete: #d2d3db;
+/* ### Dark Theme */
+$fontSprimary: #cacde8;
+$fontSsecondary: #777a92;
+$bgSprimary: #25273c;
+$bgSsecondary: #161722;
+$bgScomplete: #25273c;
+
+$VeryDarkBlue: #161722;
+$VeryDarkDesaturatedBlue: #25273c;
+$LightGrayishBlue: #cacde8;
+$LightGrayishBlue: #e4e5f1; /*(hover)*/
+$DarkGrayishBlue: #777a92;
+$VeryDarkGrayishBlue: #4d5066;
+$VeryDarkGrayishBlue: #393a4c;
 
 
 $border-radius-3 : 3px;
