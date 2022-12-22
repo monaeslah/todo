@@ -19,9 +19,9 @@ export function uniqueId() {
   return Math.random()*1000;
 }
 
-export const createTask = (title) => ({
+export const createTask = (title,completed) => ({
   type: ADD,
-  payload: { id: uniqueId(),title}
+  payload: { id: uniqueId(),completed,title}
 });
 
 
@@ -29,9 +29,10 @@ export const createTask = (title) => ({
 
 
 
-export const updateTodo = ({title}) => ({
+export const updateTodo = (data) => ({
+ 
   type: UPDATE,
-  payload: title
+  payload: data
 });
 
 export const deletTodo = (id) =>( {

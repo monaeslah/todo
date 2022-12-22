@@ -1,12 +1,15 @@
+.App {
+  display: grid;
+  grid-template-rows: 1fr 3fr;
+  min-height: 100vh;
+  position: relative;
+  transition: background-color 0.5s ease-in-out;
 
-.App{
-	display: grid;
-    grid-template-rows: 1fr 3fr;
-    min-height: 100vh;
-    background-color: $bgPrimary;
-    position: relative;
-    transition: background-color 0.5s ease-in-out;
+  @include themed() {
+    background-color: t("bgPrimary");
+  }
 }
+
 .app-bg {
   height: 100%;
   overflow: hidden;
@@ -31,7 +34,7 @@
   }
 
   h1 {
-	margin:0;
+    margin: 0;
     font-size: 3rem;
     letter-spacing: 0.3em;
     color: #fff;
@@ -41,11 +44,15 @@
     cursor: pointer;
     object-fit: cover;
   }
-  .submiting{
-	padding: 0.5em;
-	border-radius: $border-radius-3;
-	color: $BackgroundPublic;
-	background-color: $greenColor;
+
+  .submiting {
+    padding: 0.5em;
+    border-radius: $border-radius-3;
+
+    @include themed() {
+      background-color: t("greenColor");
+      color: t(BackgroundPublic);
+    }
   }
 
   .todo-input {
@@ -53,201 +60,267 @@
     margin-bottom: 2em;
     border-radius: 0.6em;
     box-shadow: 0 3px 20px 10px rgba(0, 0, 0, 0.45);
-   input {
-    padding: 1em 4em 1em 3em;
-    width: 100%;
-    border-radius: 0.5em;
-    border: none;
-    font-size: 1.1rem;
-    font-weight: 500;
-    background-color: $BackgroundPublic;
-    color: $fontPrimary;
-    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+
+    input {
+      padding: 1em 4em 1em 3em;
+      width: 100%;
+      border-radius: 0.5em;
+      border: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+
+      @include themed() {
+        background-color: t("BackgroundPublic");
+        color: t("fontPrimary");
+      }
+    }
+
+    &::placeholder {
+      font-weight: 700;
+      font-size: 1rem;
+      transition: color 0.5s ease-in-out;
+
+      @include themed() {
+        color: t("fontPrimary");
+      }
+    }
+
+    .checkbox {
+      width: auto;
+      position: absolute;
+      left: 1em;
+      top: 50%;
+      transform: translateY(-50%);
+      appearance: none;
+      -webkit-appearance: none;
+      padding: 0.5em;
+      border-radius: 50%;
+      font-size: 1.1rem;
+
+      @include themed() {
+        border: 1px solid t("fontPrimary");
+      }
+
+      &:checked {
+        @include themed() {
+          background: linear-gradient(135deg, t("primaryCheckBackground"))
+            center/cover no-repeat;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-image: url("../img/icon-check.svg");
+          width: 50%;
+          height: 50%;
+        }
+      }
+    }
+
+    .error {
+      border: 1px solid red;
+    }
+
+    img {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      object-fit: cover;
+      padding: 1em;
+      transition: background-color 0.3s ease-in-out;
+
+      &:hover {
+        background-color: limegreen;
+      }
+    }
   }
-  &::placeholder {
-    font-weight: 700;
-    font-size: 1rem;
-    color: $fontPrimary;
-    transition: color 0.5s ease-in-out;
-  }
-  .checkbox{
-	  width: auto                                                                                                                                                                                                              ;
-	  position: absolute;
-    left: 1em;
-    top: 50%;
-    transform: translateY(-50%);
-    appearance: none;
-    -webkit-appearance: none;
-    border: 1px solid $fontPrimary;
-    padding: 0.5em;
-    border-radius: 50%;
-    font-size: 1.1rem;
-	&:checked{
-		background: linear-gradient(135deg, $primaryCheckBackground)
-		center/cover no-repeat;
-		&::after{
-			content: "";
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			background-image: url("../img/icon-check.svg");
-			width: 50%;
-			height: 50%;
-		}
-	}
-  }
-  .error {
-    border: 1px solid red;
-  }
- img {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    object-fit: cover;
-    padding: 1em;
-    transition: background-color 0.3s ease-in-out;
-	&:hover{
-		background-color: limegreen;
-	}
-  }
-}
+
   p {
-    color: $fontSecondary;
     font-size: 1rem;
     text-align: center;
     margin-bottom: 3em;
+
+    @include themed() {
+      color: t("fontSecondary");
+    }
   }
 }
+
 .todo-list {
   box-shadow: 0 3px 20px 5px rgba(0, 0, 0, 0.1);
-  button{
-    margin-left:auto;
-  }
- ul {
-  li {
-  list-style: none;
-  background-color: $bgPrimary;
-  padding: 1em;
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: $fontPrimary;
-  border-bottom: 1px solid $fontSecondary;
-  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
-  .over {
-	  opacity: 0.6;
-	}
-	.completed {
-		background-color:$bgSecondary;
-		text-decoration: line-through;
-	}
-	&:first-of-type {
-		border-radius: 0.5em 0.5em 0 0;
-	}
 
-	input {
-		margin-right: 2em;
-		cursor: pointer;
-	}
-	
-	img {
-		margin-left: auto;
-	}
-	
-	p {
-    margin: 0px;
-		cursor: pointer;
-	}
+  button {
+    margin-left: auto;
+  }
+
+  ul {
+    li {
+      list-style: none;
+      padding: 1em;
+      font-size: 1.1rem;
+      font-weight: 500;
+      transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+
+      @include themed() {
+        color: t("fontPrimary");
+        background-color: t("bgPrimary");
+        border-bottom: 1px solid t("fontSecondary");
+      }
+
+      .over {
+        opacity: 0.6;
+      }
+
+      .completed {
+        text-decoration: line-through;
+
+        @include themed() {
+          background-color: t("bgSecondary");
+        }
+      }
+
+      &:first-of-type {
+        border-radius: 0.5em 0.5em 0 0;
+      }
+
+      input {
+        margin-right: 2em;
+        cursor: pointer;
+      }
+
+      img {
+        margin-left: auto;
+      }
+
+      p {
+        margin: 0px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  input {
+    appearance: none;
+    -webkit-appearance: none;
+    padding: 0.8em;
+    border-radius: 50%;
+    position: relative;
+
+    @include themed() {
+      border: 1px solid t("fontPrimary");
+    }
+
+    &:checked {
+      @include themed() {
+        background: linear-gradient(135deg, t("primaryCheckBackground"))
+          center/cover no-repeat;
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: url("../img/icon-check.svg") no-repeat center/cover;
+        width: 50%;
+        height: 50%;
+        pointer-events: none;
+      }
+    }
+  }
 }
-}
- input {
-  appearance: none;
-  -webkit-appearance: none;
-  border: 1px solid $fontPrimary;
-  padding: 0.8em;
-  border-radius: 50%;
-  position: relative;
-  
-  &:checked {
-	  background: linear-gradient(135deg,$primaryCheckBackground)
-	  center/cover no-repeat;
-	  
-	 &:after {
-		  content: "";
-		  position: absolute;
-		  top: 50%;
-		  left: 50%;
-		  transform: translate(-50%, -50%);
-		  background: url("../img/icon-check.svg") no-repeat center/cover;
-		  width: 50%;
-		  height: 50%;
-		  pointer-events: none;
-		}
-		}
-}
-}
+
 .empty {
-  background-color:$bgPrimary;
   border-radius: 0.5em 0.5em 0 0;
   text-align: center;
   padding: 1em 0;
   transition: background-color 0.5s ease-in-out;
-  
+
+  @include themed() {
+    background-color: t("bgPrimary");
+  }
+
   h2 {
-	  color: $fontPrimary;
-	  font-size: 2rem;
-	  font-weight: 700;
-	  transition: color 0.5s ease-in-out;
-	}
+    font-size: 2rem;
+    font-weight: 700;
+    transition: color 0.5s ease-in-out;
+
+    @include themed() {
+      background-color: t("fontPrimary");
+    }
+  }
 }
 
 .filter {
   padding: 1em;
-  background-color: $bgPrimary;
   border-radius: 0 0 0.5em 0.5em;
   font-size: 1rem;
   transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
   margin-bottom: 3em;
+
+  @include themed() {
+    background-color: t("bgPrimary");
+  }
+
   p {
-	color: $fontSecondary;
+    @include themed() {
+      color: t("fontSecondary");
+    }
   }
+
   div button {
-   font-weight: 700;
-   margin-right: 1em;
-   color: $fontSecondary;
-   background-color: transparent;
-   border: none;
-   font-size: 1rem;
-   cursor: pointer;
-  } &:last-child{
-	margin-right: unset;
+    font-weight: 700;
+    margin-right: 1em;
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+
+    @include themed() {
+      color: t("fontSecondary");
+    }
   }
+
+  &:last-child {
+    margin-right: unset;
+  }
+
   .active {
-	color:$primaryBrightBlue;
+    @include themed() {
+      color: t("primaryBrightBlue");
+    }
   }
 }
 
-
-
-
-
-
-
 .filter > button {
   font-weight: 500;
-  color: $fontSecondary;
   background-color: transparent;
   border: none;
   font-size: 1rem;
   cursor: pointer;
+
+  @include themed() {
+    color: t("fontSecondary");
+  }
 }
 
-
-
-.delt_btn {
-  padding: 0px 20px;
-  color: white;
-  background-color: $redColor;
-}
+// .theme--dark {
+//   .app-bg {
+//     display: block;
+//     object-fit: cover;
+//     width: 10%;
+//     height: 10%;
+//   }
+// }
+// .theme--light {
+//   .App {
+//       background: #ebebeb;
+//   }
+// }

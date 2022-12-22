@@ -1,13 +1,22 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ListInput from "./inputList";
 import ShowList from "./showList";
+import { createTask } from "../../redux/pages/action";
 
 const ToDo = (props) => {
-  {console.log("app",props)}
+  const [title, setTitle] = useState([]);
+  const [completed, setCompleted] = useState(false);
+  const [filter, setFilter] = useState("All");
+
+  const dispatch = useDispatch();
+  const Submit = () => {
+    dispatch(createTask(title, completed));
+  };
+
   return (
     <>
-{ console.log(">>>",props.darkMode,props)}
-      <div className={'app-bg theme ' }>
+      <div className={"app-bg theme "}>
         {!props.darkMode ? (
           <img src={require("../../assets/img/bg-desktop-dark.jpg")} alt="" />
         ) : (
@@ -15,9 +24,19 @@ const ToDo = (props) => {
         )}
       </div>
       <div className="app-body">
-        <ListInput  darkMode={props.darkMode}  onChange={props.onChange}   />
-        {console.log("app",props)}
-        <ShowList />
+        <ListInput
+          title={title}
+          setTitle={setTitle}
+          darkMode={props.darkMode}
+          moodChange={props.moodChange}
+          submit={Submit}
+        />
+
+        <ShowList
+          setFilter={setFilter}
+          completed={completed}
+          setCompleted={setCompleted}
+        />
       </div>
     </>
   );
