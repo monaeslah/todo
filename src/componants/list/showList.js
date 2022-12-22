@@ -7,45 +7,57 @@ const ShowList = (props) => {
   console.log(todos);
   const dispatch = useDispatch();
   const delet = (id) => {
-    console.log("id", id);
+   
     dispatch(deletTodo(id));
   };
   const controlComplete = (id) => {
-    props.setCompleted(!props.completed);
+   
     dispatch(updateTodo(id));
-    console.log(id);
+    
   };
+
+
+
+
+
   return (
     <>
       <div className="todo-list">
         <ul>
           {todos.map((todo, index) => {
             return todo?.completed === false ? (
-              <li key={index} className="flex align-center" onClick={() => controlComplete(todo.id)}>
+              <li
+              className="flex align-center"
+              key={index}
+                draggable={true}
+            
+                
+              >
                 <input
                   className="checkbox"
                   type="checkbox"
-                  onClick={() => controlComplete(todo.id)}
-                  defaultChecked={props.completed}
+                  onChange={() => controlComplete(todo.id)}
+                  checked={todo.completed}
                 />
-               {todo.title}
+                <p      onClick={() => controlComplete(todo.id)}>{todo.title}</p>
 
                 <img src={iconCross} alt="" onClick={() => delet(todo.id)} />
               </li>
             ) : (
               <li
-                key={index}
-                className={`flex align-center ${
-                  props.completed ? "completed" : ""
-                }`}
-                draggable={true}
-                onClick={() => controlComplete(todo.id)}
+              className="flex align-center completed"
+              key={index}
+              draggable={true}
+              
+                
+          
               >
                 <input
                   type="checkbox"
-                  onClick={() => controlComplete(todo.id)}
+                  onChange={() => controlComplete(todo.id)}
+                  checked={todo.completed}
                 />
-                {todo.title}
+                 <p       onClick={() => controlComplete(todo.id)}>{todo.title}</p>
                 <img src={iconCross} alt="" onClick={() => delet(todo.id)} />
               </li>
             );

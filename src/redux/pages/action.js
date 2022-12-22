@@ -29,10 +29,10 @@ export const createTask = (title,completed) => ({
 
 
 
-export const updateTodo = (data) => ({
+export const updateTodo = (id) => ({
  
   type: UPDATE,
-  payload: data
+   id
 });
 
 export const deletTodo = (id) =>( {

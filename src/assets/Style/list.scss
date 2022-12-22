@@ -172,18 +172,14 @@
         background-color: t("bgPrimary");
         border-bottom: 1px solid t("fontSecondary");
       }
-
-      .over {
-        opacity: 0.6;
-      }
-
-      .completed {
+      &.completed {
         text-decoration: line-through;
 
         @include themed() {
           background-color: t("bgSecondary");
         }
       }
+    
 
       &:first-of-type {
         border-radius: 0.5em 0.5em 0 0;
@@ -197,10 +193,15 @@
       img {
         margin-left: auto;
       }
-
+    
       p {
         margin: 0px;
         cursor: pointer;
+        .over {
+          opacity: 0.6;
+        }
+  
+       
       }
     }
   }

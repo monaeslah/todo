@@ -26,22 +26,17 @@ export const addTodos = (state =  [] , action) => {
       console.log([...state,action.payload])
       return [...state,action.payload]
       case UPDATE:
+        const item =state.filter((item)=>(item.id === action.id))[0]
+        item.completed=item.completed===false?true:false
+        console.log(item)
+        return [
+          ...state.filter((item)=>(item.id !== action.id)),
+         item]
         
-        return state.map(checkbox => {
-          if (checkbox.id !== action.id) {
-          console.log("State1",checkbox.id)
-          return {
-            ...checkbox,
-            completed: checkbox.completed ? false : true,
-        }
-        }
-        return  checkbox
-        
-        
-      })
+
     case 
     DELETE:
-    console.log("newState",state,action)
+    console.log("newState",state,action.id)
     return  state.filter((item, index) => item.id !== action.id )
      
     default:
