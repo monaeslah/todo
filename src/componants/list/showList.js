@@ -7,57 +7,41 @@ const ShowList = (props) => {
   console.log(todos);
   const dispatch = useDispatch();
   const delet = (id) => {
-   
     dispatch(deletTodo(id));
   };
   const controlComplete = (id) => {
-   
     dispatch(updateTodo(id));
-    
   };
-
-
-
-
 
   return (
     <>
       <div className="todo-list">
         <ul>
-          {todos.map((todo, index) => {
+          {todos?.map((todo, index) => {
             return todo?.completed === false ? (
-              <li
-              className="flex align-center"
-              key={index}
-                draggable={true}
-            
-                
-              >
+              <li className="flex align-center" key={index} >
                 <input
                   className="checkbox"
                   type="checkbox"
                   onChange={() => controlComplete(todo.id)}
                   checked={todo.completed}
                 />
-                <p      onClick={() => controlComplete(todo.id)}>{todo.title}</p>
+                <p onClick={() => controlComplete(todo.id)}>{todo.title}</p>
 
                 <img src={iconCross} alt="" onClick={() => delet(todo.id)} />
               </li>
             ) : (
               <li
-              className="flex align-center completed"
-              key={index}
-              draggable={true}
-              
+                className="flex align-center completed"
+                key={index}
                 
-          
               >
                 <input
                   type="checkbox"
                   onChange={() => controlComplete(todo.id)}
                   checked={todo.completed}
                 />
-                 <p       onClick={() => controlComplete(todo.id)}>{todo.title}</p>
+                <p onClick={() => controlComplete(todo.id)}>{todo.title}</p>
                 <img src={iconCross} alt="" onClick={() => delet(todo.id)} />
               </li>
             );
