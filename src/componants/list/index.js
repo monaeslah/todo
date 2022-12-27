@@ -2,17 +2,42 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ListInput from "./inputList";
 import ShowList from "./showList";
-import { createTask } from "../../redux/pages/action";
+import { createTask, filterByActive, filterByAll, filterByComplete } from "../../redux/pages/action";
 
 const ToDo = (props) => {
-  const [title, setTitle] = useState([]);
+  
+  const todos = useSelector((store) => store.addTodos);
+  const [title, setTitle] = useState("");
+
   const [completed, setCompleted] = useState(false);
   const [filter, setFilter] = useState("All");
-
+  
   const dispatch = useDispatch();
   const Submit = () => {
+ 
     dispatch(createTask(title, completed));
   };
+
+
+
+
+  
+const setF =(e)=>{
+  const value=e.target.value
+  setFilter(value);
+if (value==="Complete" ){
+  dispatch(filterByComplete());
+  
+}else if(value==="Active"){
+  dispatch(filterByActive())
+}
+else{
+  dispatch(filterByAll())
+}
+
+ 
+}
+
 
   return (
     <>
@@ -33,9 +58,13 @@ const ToDo = (props) => {
         />
 
         <ShowList
+          todos={todos}
+          filter={filter}
           setFilter={setFilter}
           completed={completed}
           setCompleted={setCompleted}
+          setF={setF}
+      
         />
       </div>
     </>

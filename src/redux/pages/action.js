@@ -21,14 +21,25 @@ export function uniqueId() {
 
 export const createTask = (title,completed) => ({
   type: ADD,
-  payload: { id: uniqueId(),completed,title}
+  payload: {id: uniqueId(),title,completed}
 });
 
 
 
+export const filterByComplete = () => ({
+ 
+  type:"COMPLETE",
+   
+});
 
 
+export const filterByAll=()=>({
+  type:"ALL"
 
+})
+export const filterByActive =()=>({
+  type:"ACTIVE"
+})
 export const updateTodo = (id) => ({
  
   type: UPDATE,
@@ -39,4 +50,9 @@ export const deletTodo = (id) =>( {
  
   type: DELETE,
    id,
+})
+export const clearAllcompleted =()=>({
+  type:"ALLCM",
+  
+
 })
