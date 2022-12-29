@@ -30,15 +30,13 @@ export const addTodos = (state = [], action) => {
         return item;
       });
     case DELETE:
-     
       return state.filter((item, index) => item.id !== action.id);
     case "ALLCM":
-     
-   
       return state.filter((item) => {
         if (item.completed === true) {
           return false;
-        }return true
+        }
+        return true;
       });
     default:
       return state;

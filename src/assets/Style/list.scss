@@ -6,7 +6,7 @@
   transition: background-color 0.5s ease-in-out;
 
   @include themed() {
-    background-color: t("bgPrimary");
+    background-color: t("bgSecondary");
   }
 }
 
@@ -71,7 +71,7 @@
       transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
 
       @include themed() {
-        background-color: t("BackgroundPublic");
+        background-color: t("bgPrimary");
         color: t("fontPrimary");
       }
     }
@@ -104,8 +104,7 @@
 
       &:checked {
         @include themed() {
-          background: linear-gradient(135deg, t("primaryCheckBackground"))
-            center/cover no-repeat;
+          background: linear-gradient(135deg, t("primaryCheckBackground")) center/cover no-repeat;
         }
 
         &::after {
@@ -141,23 +140,15 @@
     }
   }
 
-  p {
-    font-size: 1rem;
-    text-align: center;
-    margin-bottom: 3em;
 
-    @include themed() {
-      color: t("fontSecondary");
-    }
-  }
 }
 
 .todo-list {
   box-shadow: 0 3px 20px 5px rgba(0, 0, 0, 0.1);
 
-  button {
-    margin-left: auto;
-  }
+  // button {
+  //   margin-left: auto;
+  // }
 
   ul {
     li {
@@ -172,14 +163,17 @@
         background-color: t("bgPrimary");
         border-bottom: 1px solid t("fontSecondary");
       }
+
       &.completed {
         text-decoration: line-through;
 
         @include themed() {
-          background-color: t("bgSecondary");
+          color: t("fontSecondary");
+          background-color: t("bgPrimary");
+
         }
       }
-    
+
 
       &:first-of-type {
         border-radius: 0.5em 0.5em 0 0;
@@ -193,15 +187,16 @@
       img {
         margin-left: auto;
       }
-    
+
       p {
         margin: 0px;
         cursor: pointer;
+
         .over {
           opacity: 0.6;
         }
-  
-       
+
+
       }
     }
   }
@@ -217,10 +212,29 @@
       border: 1px solid t("fontPrimary");
     }
 
+    &:hover {
+      width: 23px;
+      height: 23px;
+      content: "";
+      inset: 0;
+      border-radius: 50%;
+      padding: 0.048em;
+      /* control the border thickness */
+      background: linear-gradient(135deg, $primaryCheckBackground);
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+
+
+
+    }
+
     &:checked {
       @include themed() {
-        background: linear-gradient(135deg, t("primaryCheckBackground"))
-          center/cover no-repeat;
+        background: linear-gradient(135deg, t("primaryCheckBackground")) center/cover no-repeat;
       }
 
       &:after {
@@ -300,7 +314,7 @@
   }
 }
 
-.filter > button {
+.filter>button {
   font-weight: 500;
   background-color: transparent;
   border: none;

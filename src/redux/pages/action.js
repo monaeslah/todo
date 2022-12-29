@@ -14,45 +14,34 @@ export const reset = (payload) => ({
 
 ///tasks
 
-
 export function uniqueId() {
-  return Math.random()*1000;
+  return Math.random() * 1000;
 }
 
-export const createTask = (title,completed) => ({
+export const createTask = (title, completed) => ({
   type: ADD,
-  payload: {id: uniqueId(),title,completed}
+  payload: { id: uniqueId(), title, completed },
 });
-
-
 
 export const filterByComplete = () => ({
- 
-  type:"COMPLETE",
-   
+  type: "COMPLETE",
 });
 
-
-export const filterByAll=()=>({
-  type:"ALL"
-
-})
-export const filterByActive =()=>({
-  type:"ACTIVE"
-})
+export const filterByAll = () => ({
+  type: "ALL",
+});
+export const filterByActive = () => ({
+  type: "ACTIVE",
+});
 export const updateTodo = (id) => ({
- 
   type: UPDATE,
-   id
+  id,
 });
 
-export const deletTodo = (id) =>( {
- 
+export const deletTodo = (id) => ({
   type: DELETE,
-   id,
-})
-export const clearAllcompleted =()=>({
-  type:"ALLCM",
-  
-
-})
+  id,
+});
+export const clearAllcompleted = () => ({
+  type: "ALLCM",
+});
