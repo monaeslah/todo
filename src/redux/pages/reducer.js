@@ -38,7 +38,12 @@ export const addTodos = (state = [], action) => {
         }
         return true;
       });
+      case "SET":
+        console.log("drage",action.payload);
+  
+        return action.payload;
     default:
       return state;
   }
 };
+

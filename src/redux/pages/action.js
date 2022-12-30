@@ -45,6 +45,7 @@ export const deletTodo = (id) => ({
 export const clearAllcompleted = () => ({
   type: "ALLCM",
 });
-export const setStateAction = () => ({
+export const setStateAction = (item) => ({
   type: "SET",
+  payload:item
 });

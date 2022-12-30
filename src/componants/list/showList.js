@@ -1,11 +1,14 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState,useEffect } from "react";
 import { setStateAction, updateTodo } from "../../redux/pages/action";
 import iconCross from "../../assets/img/icon-cross.svg";
 import { useDispatch, useSelector } from "react-redux";
 const ShowList = (props) => {
   const dispatch = useDispatch();
-
-  const [item, setItem] = useState(props.todos);
+  
+  const [items, setItems] = useState(props.todos);
+  useEffect(() => {
+    setItems(props.todos);
+  }, [props.todos])
   const controlComplete = (id) => {
     dispatch(updateTodo(id));
   };
@@ -21,25 +24,28 @@ const ShowList = (props) => {
   };
 
   const drop = (e) => {
-    const copyListItems = [...item];
+    const copyListItems = [...items];
     const dragItemContent = copyListItems[dragItem.current];
     copyListItems.splice(dragItem.current, 1);
     copyListItems.splice(dragOverItem.current, 0, dragItemContent);
     dragItem.current = null;
     dragOverItem.current = null;
-    setItem(copyListItems);
-    dispatch(setStateAction(item));
-    console.log(item);
+    
+    setItems(copyListItems);
+    dispatch(setStateAction(copyListItems));
+    console.log("index", items);
   };
+  
+  
   return (
     <>
       <div className="todo-list">
-        {console.log("new", item)}
+        
         <ul>
-          {item
+          {items
             .filter((todo) => {
-              if (props.filter == "Complete") return todo.completed;
-              if (props.filter == "Active") {
+              if (props.filter === "Complete") return todo.completed;
+              if (props.filter === "Active") {
                 return !todo.completed;
               }
               return true;
@@ -76,8 +82,8 @@ const ShowList = (props) => {
         </ul>
 
         <div className="flex filter align-center space-between">
-          {!(item.length === 0) ? (
-            <p>{item.length} items left</p>
+          {!(items.length === 0) ? (
+            <p>{items.length} items left</p>
           ) : (
             <div className="empty">
               <h2>Add some Todos to the list...</h2>
