@@ -82,11 +82,13 @@ const ShowList = (props) => {
         </ul>
 
         <div className="flex filter align-center space-between">
-          {!(items.length === 0) ? (
+          {!(items.length === 0) ? 
+          (
             <p>{items.length} items left</p>
-          ) : (
+          ) :
+           (
             <div className="empty">
-              <h2>Add some Todos to the list...</h2>
+              
             </div>
           )}
           <div className="flex align-center">

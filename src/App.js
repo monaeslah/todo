@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Count from "./componants/counter/index";
 import Todo from "./componants/list/index";
 
 const App = () => {
