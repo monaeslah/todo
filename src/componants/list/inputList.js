@@ -23,7 +23,7 @@ export const InputTodo = (props) => {
           onChange={(event) => {
             props.setTitle(event.target.value);
           }}
-          placeholder="title"
+          placeholder="Create a new Todo..."
         />
         <input type="checkbox" className="checkbox" disabled />
       </div>

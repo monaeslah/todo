@@ -20,6 +20,7 @@ const ToDo = (props) => {
 
   const Submit = () => {
     dispatch(createTask(title, completed));
+    setTitle("")
   };
   const delet = (id) => {
     dispatch(deletTodo(id));
