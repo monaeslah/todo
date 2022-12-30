@@ -1,44 +1,42 @@
-import React , {useRef } from "react";
-import {
-  updateTodo,
-
-  
-} from "../../redux/pages/action";
+import React, { useRef, useState } from "react";
+import { setStateAction, updateTodo } from "../../redux/pages/action";
 import iconCross from "../../assets/img/icon-cross.svg";
 import { useDispatch, useSelector } from "react-redux";
 const ShowList = (props) => {
   const dispatch = useDispatch();
-  
- 
+
+  const [item, setItem] = useState(props.todos);
   const controlComplete = (id) => {
     dispatch(updateTodo(id));
   };
-   const dragItem = useRef();
-   const dragOverItem = useRef();
+
+  const dragItem = useRef();
+  const dragOverItem = useRef();
+
   const dragStart = (e, position) => {
     dragItem.current = position;
-    console.log(e.target.innerHTML);
   };
   const dragEnter = (e, position) => {
     dragOverItem.current = position;
-    console.log(e.target.innerHTML);
   };
+
   const drop = (e) => {
-    const copyListItems = [...props.todos];
-    console.log(copyListItems)
+    const copyListItems = [...item];
     const dragItemContent = copyListItems[dragItem.current];
     copyListItems.splice(dragItem.current, 1);
     copyListItems.splice(dragOverItem.current, 0, dragItemContent);
     dragItem.current = null;
     dragOverItem.current = null;
-    props.setTodos(copyListItems);
+    setItem(copyListItems);
+    dispatch(setStateAction(item));
+    console.log(item);
   };
   return (
     <>
       <div className="todo-list">
-        {console.log(props.todos)}
+        {console.log("new", item)}
         <ul>
-          {props.todos
+          {item
             .filter((todo) => {
               if (props.filter == "Complete") return todo.completed;
               if (props.filter == "Active") {
@@ -56,6 +54,7 @@ const ShowList = (props) => {
                   onDragEnter={(e) => dragEnter(e, index)}
                   onDragEnd={drop}
                   key={index}
+                  data-index={index}
                   draggable
                 >
                   <input
@@ -66,15 +65,19 @@ const ShowList = (props) => {
                   />
                   <p onClick={() => controlComplete(todo.id)}>{todo.title}</p>
 
-                  <img src={iconCross} alt="" onClick={() => props.delet(todo.id)} />
+                  <img
+                    src={iconCross}
+                    alt=""
+                    onClick={() => props.delet(todo.id)}
+                  />
                 </li>
               );
             })}
         </ul>
 
         <div className="flex filter align-center space-between">
-          {!(props.todos.length === 0) ? (
-            <p>{props.todos.length} items left</p>
+          {!(item.length === 0) ? (
+            <p>{item.length} items left</p>
           ) : (
             <div className="empty">
               <h2>Add some Todos to the list...</h2>
