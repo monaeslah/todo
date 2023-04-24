@@ -9,7 +9,7 @@ const App = () => {
   }
 
   return (
-    <span className={darkMode ? "theme--default" : "theme--dark"}>
+    <span className={darkMode ?  "theme--dark" :"theme--default" }>
       <div className="App ">
         <Todo moodChange={moodChange} darkMode={darkMode} />
       </div>
