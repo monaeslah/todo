@@ -36,7 +36,7 @@ const ToDo = (props) => {
       dispatch(filterByAll());
     }
   };
-
+console.log("last version")
   const clearAll = () => {
     dispatch(clearAllcompleted());
   };
