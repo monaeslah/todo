@@ -1,0 +1,141 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+
+
+html {
+    font-size: 16px;
+    @include media-max($M){
+      font-size: 14.5px ;
+    }
+  }
+  body {
+    // min-width: fit-content;
+    margin: 0;
+    font-family: IRANSans_light, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-overflow-scrolling: touch;
+    background-color: $BackgroundPublic;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+  }
+  
+  input {
+    outline: 0;
+    box-shadow: 0 0 0;
+    border: 0;
+  
+    &:focus {
+      outline: 0;
+      box-shadow: 0 0 0;
+    }
+  }
+  
+  button {
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    box-shadow: 0 0 0;
+    text-decoration: none;
+    cursor: pointer;
+  
+    &:focus {
+      outline: 0;
+      box-shadow: 0 0 0;
+      text-decoration: none;
+    }
+  }
+  
+  a {
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    box-shadow: 0 0 0;
+    text-decoration: none;
+  
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  
+  label {
+    margin: 0;
+  }
+  
+  p {
+    margin: 0;
+  }
+  
+  textarea {
+    &:focus {
+      outline: 0;
+    }
+  }
+  
+  @media (max-width: 1200px) {
+    .app-body {
+      width: 80%;
+    }
+  }
+  
+  @media (max-width: 650px) {
+    .todo-list {
+      position: relative;
+    }
+  
+    .empty {
+      padding: 1em;
+    }
+  
+    .empty h2 {
+      font-size: 1.5rem;
+    }
+  
+    .filter div.flex {
+      position: absolute;
+      width: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -5rem;
+      background-color: var(--bg-primary);
+      padding: 1em 0;
+      justify-content: center;
+      border-radius: 0.5em;
+      transition: background-color 0.5s ease-in-out;
+    }
+  
+    .filter {
+      margin-bottom: 8em;
+    }
+  }
+  
+.flex {
+	display: flex;
+}
+
+.align-center {
+	align-items: center;
+}
+
+.space-between {
+	justify-content: space-between;
+}
+
+.justfy-center {
+	justify-content: center;
+}
+
+.space-evenly {
+	justify-content: space-evenly;
+}

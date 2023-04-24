@@ -1,0 +1,341 @@
+.App {
+  display: grid;
+  grid-template-rows: 1fr 3fr;
+  min-height: 100vh;
+  position: relative;
+  transition: background-color 0.5s ease-in-out;
+
+  @include themed() {
+    background-color: t("bgSecondary");
+  }
+}
+
+.app-bg {
+  height: 100%;
+  overflow: hidden;
+
+  img {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.app-body {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translate(-50%);
+  width: 60%;
+
+  div:first-child {
+    margin-bottom: 2em;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 3rem;
+    letter-spacing: 0.3em;
+    color: #fff;
+  }
+
+  img {
+    cursor: pointer;
+    object-fit: cover;
+  }
+
+  .submiting {
+    padding: 0.5em;
+    border-radius: $border-radius-3;
+
+    @include themed() {
+      background-color: t("greenColor");
+      color: t(BackgroundPublic);
+    }
+  }
+
+  .todo-input {
+    position: relative;
+    margin-bottom: 2em;
+    border-radius: 0.6em;
+    box-shadow: 0 3px 20px 10px rgba(0, 0, 0, 0.45);
+
+    input {
+      padding: 1em 4em 1em 3em;
+      width: 100%;
+      border-radius: 0.5em;
+      border: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+
+      @include themed() {
+        background-color: t("bgPrimary");
+        color: t("fontPrimary");
+      }
+    }
+
+    &::placeholder {
+      font-weight: 700;
+      font-size: 1rem;
+      transition: color 0.5s ease-in-out;
+
+      @include themed() {
+        color: t("fontPrimary");
+      }
+    }
+
+    .checkbox {
+      width: auto;
+      position: absolute;
+      left: 1em;
+      top: 50%;
+      transform: translateY(-50%);
+      appearance: none;
+      -webkit-appearance: none;
+      padding: 0.5em;
+      border-radius: 50%;
+      font-size: 1.1rem;
+
+      @include themed() {
+        border: 1px solid t("fontPrimary");
+      }
+
+      &:checked {
+        @include themed() {
+          background: linear-gradient(135deg, t("primaryCheckBackground")) center/cover no-repeat;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-image: url("../img/icon-check.svg");
+          width: 50%;
+          height: 50%;
+        }
+      }
+    }
+
+    .error {
+      border: 1px solid red;
+    }
+
+    img {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      object-fit: cover;
+      padding: 1em;
+      transition: background-color 0.3s ease-in-out;
+
+      &:hover {
+        background-color: limegreen;
+      }
+    }
+  }
+
+
+}
+
+.todo-list {
+  box-shadow: 0 3px 20px 5px rgba(0, 0, 0, 0.1);
+
+  // button {
+  //   margin-left: auto;
+  // }
+
+  ul {
+    li {
+      list-style: none;
+      padding: 1em;
+      font-size: 1.1rem;
+      font-weight: 500;
+      transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+
+      @include themed() {
+        color: t("fontPrimary");
+        background-color: t("bgPrimary");
+        border-bottom: 1px solid t("fontSecondary");
+      }
+
+      &.completed {
+        text-decoration: line-through;
+
+        @include themed() {
+          color: t("fontSecondary");
+          background-color: t("bgPrimary");
+
+        }
+      }
+
+
+      &:first-of-type {
+        border-radius: 0.5em 0.5em 0 0;
+      }
+
+      input {
+        margin-right: 2em;
+        cursor: pointer;
+      }
+
+      img {
+        margin-left: auto;
+      }
+
+      p {
+        margin: 0px;
+        cursor: pointer;
+
+        .over {
+          opacity: 0.6;
+        }
+
+
+      }
+    }
+  }
+
+  input {
+    appearance: none;
+    -webkit-appearance: none;
+    padding: 0.8em;
+    border-radius: 50%;
+    position: relative;
+
+    @include themed() {
+      border: 1px solid t("fontPrimary");
+    }
+
+    &:hover {
+      width: 23px;
+      height: 23px;
+      content: "";
+      inset: 0;
+      border-radius: 50%;
+      padding: 0.048em;
+      /* control the border thickness */
+      background: linear-gradient(135deg, $primaryCheckBackground);
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+
+
+
+    }
+
+    &:checked {
+      @include themed() {
+        background: linear-gradient(135deg, t("primaryCheckBackground")) center/cover no-repeat;
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: url("../img/icon-check.svg") no-repeat center/cover;
+        width: 50%;
+        height: 50%;
+        pointer-events: none;
+      }
+    }
+  }
+}
+
+.empty {
+  border-radius: 0.5em 0.5em 0 0;
+  text-align: center;
+  padding: 1em 0;
+  transition: background-color 0.5s ease-in-out;
+
+  @include themed() {
+    background-color: t("bgPrimary");
+  }
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    transition: color 0.5s ease-in-out;
+
+    @include themed() {
+      background-color: t("fontPrimary");
+    }
+  }
+}
+
+.filter {
+  padding: 1em;
+  border-radius: 0 0 0.5em 0.5em;
+  font-size: 1rem;
+  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+  margin-bottom: 3em;
+
+  @include themed() {
+    background-color: t("bgPrimary");
+  }
+
+  p {
+    @include themed() {
+      color: t("fontSecondary");
+    }
+  }
+
+  div button {
+    font-weight: 700;
+    margin-right: 1em;
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+
+    @include themed() {
+      color: t("fontSecondary");
+    }
+  }
+
+  &:last-child {
+    margin-right: unset;
+  }
+
+  .active {
+    @include themed() {
+      color: t("primaryBrightBlue");
+    }
+  }
+}
+
+.filter>button {
+  font-weight: 500;
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+
+  @include themed() {
+    color: t("fontSecondary");
+  }
+}
+
+// .theme--dark {
+//   .app-bg {
+//     display: block;
+//     object-fit: cover;
+//     width: 10%;
+//     height: 10%;
+//   }
+// }
+// .theme--light {
+//   .App {
+//       background: #ebebeb;
+//   }
+// }
